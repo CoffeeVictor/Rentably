@@ -35,16 +35,19 @@ class UsersService {
 		return user;
 	}
 
-	async update(userData: IUserData) {
-		const { email, name, password } = userData;
+	//TODO: Think more about this
+	// async update(userData: IUserData) {
+	// 	const { email, name, password } = userData;
 
-		await this.usersRepository.update(
-			{ email },
-			{ name, password_hash: this.hashPassword(password) }
-		);
+	// 	await this.usersRepository.update(
+	// 		{ email },
+	// 		{ name, password_hash: this.hashPassword(password) }
+	// 	);
 
-		return this.usersRepository.findOne({ email });
-	}
+	// 	const user = this.findByEmail(email);
+
+	// 	return user;
+	// }
 
 	async findByEmail(email: string) {
 		return this.usersRepository.findOne({

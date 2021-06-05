@@ -11,20 +11,29 @@ class UsersController {
 
 		const user = await usersService.create({ email, name, password });
 
-		return response.json(user);
+		const responseData = cleanUser(user);
+
+		return response.json(responseData);
 	}
 
-	async update(request: Request, response: Response) {
-		const { email } = request.params;
+	// async update(request: Request, response: Response) {
+	// 	const { email } = request.params;
 
-		const { name, password } = request.body;
+	// 	const { name, password } = request.body;
 
-		const usersService = new UsersService();
+	// 	const usersService = new UsersService();
 
-		const user = await usersService.update({ email, name, password });
+	// 	const user = await usersService.update({ email, name, password });
 
-		return response.json(user);
-	}
+	// 	if(!user)
+
+	// 	return response.json(user);
+	// }
+}
+
+function cleanUser(user: User) {
+	const { email, name, created_at } = user;
+	return { email, name, created_at };
 }
 
 export { UsersController };
