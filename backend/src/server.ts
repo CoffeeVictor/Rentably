@@ -1,15 +1,15 @@
 import express from 'express';
+import { routes } from './routes';
 
 const app = express();
 
-const PORT = 8000;
+app.use(express.json());
+app.use(routes);
 
-app.get('/', (request, response) => {
-	return response.json({
-		message: 'Hello World from SERVER!',
-	});
-});
+const PORT = 8000;
 
 app.listen(PORT, () => {
 	console.log(`Server started on port ${PORT}`);
 });
+
+//inquilino, aluguel, imovel, contrato
