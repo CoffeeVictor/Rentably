@@ -1,0 +1,33 @@
+@import './variables.scss';
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background-color: $bg_medium;
+}
+
+body,
+input,
+textarea,
+button {
+	font-family: 'Ubuntu', sans-serif;
+	color: $off_white;
+	font: 500 1rem;
+}
+
+h1 {
+	font-size: 2rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+}
+
+button {
+	cursor: pointer;
+}
