@@ -1,0 +1,24 @@
+@import '../../styles/variables.scss';
+
+.styledButton {
+	margin: 1.2rem;
+	background-color: $primary_accent;
+	height: 100%;
+	width: 10.625rem;
+	border-radius: 0.625rem;
+	border-color: $primary_accent;
+	border-style: solid;
+	outline: none;
+	font-size: 1rem;
+	color: $bg_dark;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+
+	transition: all 0.15s linear;
+
+	&:hover,
+	&:focus {
+		filter: brightness(70%);
+	}
+}

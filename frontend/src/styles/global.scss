@@ -31,3 +31,18 @@ h2 {
 button {
 	cursor: pointer;
 }
+
+a {
+	margin: 0 1.2rem;
+	color: $primary_accent;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	transition: all 0.15s linear;
+
+	&:hover,
+	&:focus {
+		outline: none;
+		filter: brightness(70%);
+	}
+}

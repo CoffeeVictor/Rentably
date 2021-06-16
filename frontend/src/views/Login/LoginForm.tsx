@@ -1,26 +1,36 @@
 import React from 'react';
 import { Form } from '@unform/web';
 import { Input, PasswordInput } from '../../components/Input';
+import { Button } from '../../components/Button';
 import api from '../../services/api';
+import styles from './styles.module.scss';
 
 interface IData {
 	email: string;
 	password: string;
 }
 
+const FormItem: React.FC = ({ children }) => {
+	return <div className={styles.formItem}>{children}</div>;
+};
+
 export const LoginForm: React.FC = () => {
 	return (
 		<Form onSubmit={handleSubmit}>
-			<Input name={'email'} type={'email'} placeholder={'Email'} />
-			<PasswordInput />
+			<FormItem>
+				<Input name={'email'} type={'email'} placeholder={'Email'} />
+			</FormItem>
+			<FormItem>
+				<PasswordInput />
+			</FormItem>
 
-			<div>
-				<button type={'submit'}>Click me</button>
+			<FormItem>
+				<Button type={'submit'}>Login</Button>
 				<a href="/forgot">Esqueci minha senha</a>
-			</div>
-			<div>
+			</FormItem>
+			<FormItem>
 				<a href="/register">Não tenho conta</a>
-			</div>
+			</FormItem>
 		</Form>
 	);
 };

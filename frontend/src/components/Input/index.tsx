@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useField } from '@unform/core';
 import { FaEyeSlash, FaEye } from 'react-icons/fa';
+import styles from './styles.module.scss';
 
 interface IProps {
 	name: string;
@@ -21,7 +22,7 @@ function Input({ name, label, ...rest }: InputProps) {
 		});
 	}, [fieldName, registerField]);
 
-	return <input ref={inputRef} {...rest} />;
+	return <input className={styles.styledInput} ref={inputRef} {...rest} />;
 }
 
 function PasswordInput() {
@@ -38,8 +39,9 @@ function PasswordInput() {
 	}, [fieldName, registerField]);
 
 	return (
-		<>
+		<div className={styles.passwordInputContainer}>
 			<input
+				className={styles.styledInput}
 				ref={inputRef}
 				type={passwordVisible ? 'text' : 'password'}
 				placeholder={'Password'}
@@ -48,16 +50,10 @@ function PasswordInput() {
 				onClick={() => {
 					setPasswordVisible(!passwordVisible);
 				}}
-				style={{
-					marginLeft: '22.813rem',
-					marginBottom: '4.063rem',
-					cursor: 'pointer',
-					position: 'absolute',
-				}}
 			>
 				{passwordVisible ? <FaEye size={20} /> : <FaEyeSlash size={20} />}
 			</span>
-		</>
+		</div>
 	);
 }
 
