@@ -18,6 +18,9 @@ class User {
 	@CreateDateColumn()
 	created_at: Date;
 
+	@Column()
+	cpf: string;
+
 	constructor() {
 		if (!this.id) {
 			this.id = uuid();

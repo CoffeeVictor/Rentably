@@ -5,11 +5,11 @@ import { UsersService } from '../services/UsersService';
 
 class UsersController {
 	async create(request: Request, response: Response): Promise<Response> {
-		const { email, name, password }: IUserData = request.body;
+		const { email, name, password, cpf }: IUserData = request.body;
 
 		const usersService = new UsersService();
 
-		const user = await usersService.create({ email, name, password });
+		const user = await usersService.create({ email, name, password, cpf });
 
 		const responseData = cleanUser(user);
 

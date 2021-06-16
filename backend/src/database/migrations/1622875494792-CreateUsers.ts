@@ -28,6 +28,11 @@ export class CreateUsers1622875494792 implements MigrationInterface {
 						isNullable: false,
 					},
 					{
+						name: 'cpf',
+						type: 'string',
+						isNullable: false,
+					},
+					{
 						name: 'created_at',
 						type: 'timestamp',
 						default: 'now()',

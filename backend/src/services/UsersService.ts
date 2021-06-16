@@ -18,7 +18,7 @@ class UsersService {
 	}
 
 	async create(userData: IUserData) {
-		const { email, name, password } = userData;
+		const { email, name, password, cpf } = userData;
 
 		const userExists = await this.findByEmail(email);
 
@@ -28,6 +28,7 @@ class UsersService {
 			email,
 			name,
 			password_hash: this.hashPassword(password),
+			cpf,
 		});
 
 		await this.usersRepository.save(user);
