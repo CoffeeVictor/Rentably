@@ -15,7 +15,7 @@ class AuthService {
 
 		if (!user) return false;
 
-		const hash = user.password_hash;
+		const hash = user.passwordHash;
 
 		const isCorrectPassword = compareSync(password, hash);
 

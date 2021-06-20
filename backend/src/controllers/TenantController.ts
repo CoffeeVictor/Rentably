@@ -1,9 +1,10 @@
 import { Request, Response } from 'express';
+import { ITenantData } from '../@types/Tenant';
 import { TenantsService } from '../services/TenantsService';
 
 class TenantController {
 	async create(request: Request, response: Response): Promise<Response> {
-		const { email, name } = request.body;
+		const { email, name }:ITenantData = request.body;
 
 		const tenantsService = new TenantsService();
 

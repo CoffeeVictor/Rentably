@@ -11,7 +11,7 @@ class AuthController {
 
 		if (!isUserAuthenticated) {
 			return response
-				.status(403)
+				.status(401)
 				.send({ message: 'Incorrect email or password' });
 		}
 

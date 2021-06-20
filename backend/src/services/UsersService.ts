@@ -22,12 +22,12 @@ class UsersService {
 
 		const userExists = await this.findByEmail(email);
 
-		if (userExists) return userExists;
+		if (userExists) return false;
 
 		const user = this.usersRepository.create({
 			email,
 			name,
-			password_hash: this.hashPassword(password),
+			passwordHash: this.hashPassword(password),
 			cpf,
 		});
 
