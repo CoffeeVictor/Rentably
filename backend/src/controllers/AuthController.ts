@@ -7,15 +7,15 @@ class AuthController {
 
 		const authService = new AuthService();
 
-		const isUserAuthenticated = await authService.authenticate(email, password);
+		const token = await authService.authenticate(email, password);
 
-		if (!isUserAuthenticated) {
+		if (!token) {
 			return response
 				.status(403)
 				.send({ message: 'Incorrect email or password' });
 		}
 
-		return response.json({ message: 'Correct password' });
+		return response.json({ token });
 	}
 }
 

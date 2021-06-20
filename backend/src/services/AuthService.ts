@@ -2,6 +2,8 @@ import { getCustomRepository, Repository } from 'typeorm';
 import { User } from '../entities/User';
 import { UsersRepository } from '../repositories/UsersRepository';
 import { compareSync } from 'bcrypt';
+import *  as jwt from 'jsonwebtoken';
+import { json } from 'express';
 
 class AuthService {
 	private usersRepository: Repository<User>;
@@ -18,6 +20,12 @@ class AuthService {
 		const hash = user.password_hash;
 
 		const isCorrectPassword = compareSync(password, hash);
+
+		if (isCorrectPassword) {
+			console.log(process.env.ACCESS_TOKEN_SECRET);
+			const accessToken = jwt.sign({ "username": user.name }, process.env.ACCESS_TOKEN_SECRET);
+			return accessToken;
+		}
 
 		return isCorrectPassword;
 	}
