@@ -10,13 +10,13 @@ class User {
 	email: string;
 
 	@Column()
-	password_hash: string;
+	passwordHash: string;
 
 	@Column()
 	name: string;
 
 	@CreateDateColumn()
-	created_at: Date;
+	createdAt: Date;
 
 	@Column()
 	cpf: string;
