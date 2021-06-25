@@ -10,10 +10,16 @@ class UsersController {
 		const usersService = new UsersService();
 
 		const user = await usersService.create({ email, name, password, cpf });
-
-		const responseData = cleanUser(user);
-
-		return response.json(responseData);
+		if (user){
+			const responseData = cleanUser(user);
+			return response.json(responseData);
+		}
+		else{
+			return response
+				   .status(401)
+				   .send({ message: 'Email already taken' });
+		}
+		
 	}
 
 	// async update(request: Request, response: Response) {
@@ -32,8 +38,8 @@ class UsersController {
 }
 
 function cleanUser(user: User) {
-	const { email, name, created_at } = user;
-	return { email, name, created_at };
+	const { email, name, createdAt } = user;
+	return { email, name, createdAt };
 }
 
 export { UsersController };

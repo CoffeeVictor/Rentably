@@ -1,4 +1,5 @@
 import { getCustomRepository, Repository } from 'typeorm';
+import { ITenantData } from '../@types/Tenant';
 import { Tenant } from '../entities/Tenant';
 import { TenantRepository } from '../repositories/TenantRepository';
 
@@ -9,8 +10,8 @@ class TenantsService {
 		this.tenantsRepository = getCustomRepository(TenantRepository);
 	}
 
-	async create({ email, name }: { email: String; name: String }) {
-		//TODO Criar interface para esse metodo
+	async create(tenantData: ITenantData) {
+		const {email, name} = tenantData;
 		const tenantExists = await this.tenantsRepository.findOne({ email });
 
 		if (tenantExists) return tenantExists;
