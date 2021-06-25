@@ -17,6 +17,39 @@
 	width: 31.25rem;
 	height: 31.25rem;
 	margin: auto 0;
+	padding-top: 150px;
+
+	h1 {
+		position: absolute;
+		width: 202px;
+		height: 44px;
+		left: 241px;
+		top: 321px;
+		font-size: 48px;
+		line-height: 55px;
+		letter-spacing: -0.015em;
+	}
+
+	p {
+		position: absolute;
+		width: 396px;
+		height: 50px;
+		left: 144px;
+		top: 415px;
+		font-size: 24px;
+		line-height: 28px;
+		text-align: center;
+		letter-spacing: -0.015em;
+	}
+
+	img {
+		position: absolute;
+		width: 145px;
+		height: 145px;
+		left: 261px;
+		top: 156px;
+	}
+
 }
 
 .formItem {
