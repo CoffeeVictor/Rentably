@@ -5,6 +5,7 @@ import { Button } from '../../components/Button';
 import api from '../../services/api';
 import styles from './styles.module.scss';
 
+
 interface IData {
 	email: string;
 	password: string;
@@ -23,15 +24,14 @@ export const LoginForm: React.FC = () => {
 			<FormItem>
 				<PasswordInput />
 			</FormItem>
-
 			<FormItem>
-				<Button type={'submit'}>Login</Button>
+				<Button type={'submit'}>Entrar</Button>
 				<a href="/forgot">Esqueci minha senha</a>
 			</FormItem>
 			<FormItem>
 				<a href="/register">Não tenho conta</a>
 			</FormItem>
-		</Form>
+	</Form>	
 	);
 };
 
