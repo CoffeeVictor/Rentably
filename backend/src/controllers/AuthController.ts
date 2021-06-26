@@ -4,7 +4,7 @@ import { AuthService } from '../services/AuthService';
 class AuthController {
 	async login(request: Request, response: Response): Promise<Response> {
 		const { email, password } = request.body;
-
+		
 		const authService = new AuthService();
 
 		const isUserAuthenticated = await authService.authenticate(email, password);

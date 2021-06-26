@@ -6,7 +6,7 @@ import { UsersService } from '../services/UsersService';
 class UsersController {
 	async create(request: Request, response: Response): Promise<Response> {
 		const { email, name, password }: IUserData = request.body;
-
+		
 		const usersService = new UsersService();
 
 		const user = await usersService.create({ email, name, password });
@@ -16,19 +16,31 @@ class UsersController {
 		return response.json(responseData);
 	}
 
-	// async update(request: Request, response: Response) {
-	// 	const { email } = request.params;
+	async read(request: Request, response: Response) {
 
-	// 	const { name, password } = request.body;
+		const usersService = new UsersService()
 
-	// 	const usersService = new UsersService();
+		const v = request.body.email
 
-	// 	const user = await usersService.update({ email, name, password });
+		const user = await usersService.findByEmail( v );
 
-	// 	if(!user)
+		return response.json( user )
 
-	// 	return response.json(user);
-	// }
+	}
+
+	async update(request: Request, response: Response) {
+	const { email } = request.params;
+
+	const { name, password } = request.body;
+
+	const usersService = new UsersService();
+
+	const user = await usersService.update({ email, name, password });
+
+	if(!user)
+
+	return response.json(user);
+	}
 }
 
 function cleanUser(user: User) {

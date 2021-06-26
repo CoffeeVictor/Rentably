@@ -16,6 +16,8 @@ routes.get('/', (request, response) => {
 	});
 });
 
+routes.get("/users", usersController.read)
+
 routes.post('/users', usersController.create);
 
 // routes.put('/users/:email', usersController.update);
