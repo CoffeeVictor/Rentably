@@ -1,9 +1,9 @@
 import styles from './styles.module.scss';
-import { Validate2Form } from './Validate2Form';
+import { RedefinePassword1Form } from './RedefinePassword1Form';
 import Logo from "../../components/Images/logo.png";
 
 
-export default function Validate2() {
+export default function RedefinePassword1() {
 	return (
 		<div className={styles.loginPage}>
 			<div className={styles.contentContainer}>
@@ -13,7 +13,7 @@ export default function Validate2() {
 				<p>Seja bem-vindo ao seu gerenciador de imóveis e aluguéis</p>
 				</div>
 				<div className={styles.formContainer}>
-					<Validate2Form />
+					<RedefinePassword1Form />
 				</div>
 			</div>
 		</div>
