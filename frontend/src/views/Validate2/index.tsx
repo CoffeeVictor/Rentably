@@ -1,18 +1,19 @@
 import styles from './styles.module.scss';
-import { LoginForm } from './LoginForm';
+import { Validate2Form } from './Validate2Form';
 import Logo from "../../components/Images/logo.png";
 
-export default function Login() {
+
+export default function Validate1() {
 	return (
 		<div className={styles.loginPage}>
 			<div className={styles.contentContainer}>
 				<div className={styles.logoContainer}>	
-				<img src={Logo}></img>
+				<img src={Logo} ></img>
 				<h1>Rentably</h1>
 				<p>Seja bem-vindo ao seu gerenciador de imóveis e aluguéis</p>
 				</div>
 				<div className={styles.formContainer}>
-					<LoginForm />
+					<Validate2Form />
 				</div>
 			</div>
 		</div>

@@ -1,8 +1,9 @@
 import styles from './styles.module.scss';
-import { LoginForm } from './LoginForm';
+import { RegisterForm } from './RegisterForm';
 import Logo from "../../components/Images/logo.png";
 
-export default function Login() {
+
+export default function Register() {
 	return (
 		<div className={styles.loginPage}>
 			<div className={styles.contentContainer}>
@@ -12,7 +13,7 @@ export default function Login() {
 				<p>Seja bem-vindo ao seu gerenciador de imóveis e aluguéis</p>
 				</div>
 				<div className={styles.formContainer}>
-					<LoginForm />
+					<RegisterForm />
 				</div>
 			</div>
 		</div>

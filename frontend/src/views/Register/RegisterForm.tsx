@@ -15,30 +15,34 @@ const FormItem: React.FC = ({ children }) => {
 	return <div className={styles.formItem}>{children}</div>;
 };
 
-export const LoginForm: React.FC = () => {
+export const RegisterForm: React.FC = () => {
 	return (
 		<Form onSubmit={handleSubmit}>
 			<FormItem>
-				<h1>Login</h1>
+				<h1>Create acount</h1>
 			</FormItem>
 			<FormItem>
-				<Input name={'email'} type={'email'} placeholder={'Email'} />
+				<Input name={'name'} type={'text'} placeholder={'Type your name'} />
+			</FormItem>
+			<FormItem>
+				<Input name={'cpf'} type={'text'} placeholder={'Type your cpf'} />
 			</FormItem>
 			<FormItem>
 				<PasswordInput />
 			</FormItem>
 			<FormItem>
-				<Button type={'submit'}>Log in</Button>
-				<a href="/forgot">Forgot Password?</a>
+				<PasswordInput />
 			</FormItem>
 			<FormItem>
-				<a href="/register">Create new account</a>
+				<Button type={'submit'} >Registrate</Button>
+				<a href="/login">I already have an account</a>
 			</FormItem>
 	</Form>	
 	);
 };
 
 async function handleSubmit(data: IData) {
+	window.location.href="./validate"
 	const response = await api.post('auth/login', data);
 	console.log('Response:', response.data);
 }
