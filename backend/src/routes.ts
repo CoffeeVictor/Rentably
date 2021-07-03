@@ -20,7 +20,7 @@ routes.get('/', (request, response) => {
 
 routes.post('/users', usersController.create);
 
-routes.get('/users/', usersController.read);
+routes.get('/users', usersController.read);
 
 routes.put('/users/:email', usersController.update);
 

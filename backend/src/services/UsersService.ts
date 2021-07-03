@@ -36,23 +36,23 @@ class UsersService {
 		return user;
 	}
 
-	async update(userData: IUserData ) {
-	 	const { email, name, password } = userData;
+	async update(userData: IUserData) {
+		const { email, name, password } = userData;
 
-	 	const user = await this.usersRepository.update({email}, {email, name, passwordHash: this.hashPassword(password)})
+		const user = await this.usersRepository.update({ email }, { email, name, passwordHash: this.hashPassword(password) })
 
-	 	return user;
+		return user;
 	}
 
-	async delete(userData: IUserData){
+	async delete(email: string) {
 
-		const { email } = userData;
+		// const { email } = userData;
 
 		// const exists = await this.findByEmail(email)
 
 		// if(!exists) return false
-			
-		const deleting = this.usersRepository.delete({ email} )
+
+		const deleting = this.usersRepository.delete({ email })
 
 		return deleting
 
