@@ -1,4 +1,5 @@
 import { getCustomRepository, Repository } from 'typeorm';
+import { ITenantData } from '../@types/Tenant';
 import { Tenant } from '../entities/Tenant';
 import { TenantRepository } from '../repositories/TenantRepository';
 
@@ -9,8 +10,9 @@ class TenantsService {
 		this.tenantsRepository = getCustomRepository(TenantRepository);
 	}
 
-	async create({ email, name }: { email: String; name: String }) {
-		//TODO Criar interface para esse metodo
+	async create(tenantData: ITenantData) {
+		const {email, name} = tenantData;
+
 		const tenantExists = await this.tenantsRepository.findOne({ email });
 
 		if (tenantExists) return tenantExists;
@@ -23,6 +25,35 @@ class TenantsService {
 
 		return newTenant;
 	}
+
+	async findByEmail(email: string) {
+		return this.tenantsRepository.findOne({
+			email,
+		});
+	}
+
+
+	async update(tenantData: ITenantData ) {
+		const { email, name} = tenantData;
+
+		const tenant = await this.tenantsRepository.update( { email }, { email, name } )
+	
+		return tenant;
+	}
+
+
+
+	async delete(tenantData: ITenantData){
+
+		const { email } = tenantData
+		
+		const deleting = await this.tenantsRepository.delete({email})
+
+		return deleting
+
+	}
+
+
 }
 
 export { TenantsService };

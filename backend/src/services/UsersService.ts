@@ -18,16 +18,17 @@ class UsersService {
 	}
 
 	async create(userData: IUserData) {
-		const { email, name, password } = userData;
+		const { email, name, password, cpf } = userData;
 
 		const userExists = await this.findByEmail(email);
 
-		if (userExists) return userExists;
+		if (userExists) return false;
 
 		const user = this.usersRepository.create({
 			email,
 			name,
-			password_hash: this.hashPassword(password),
+			passwordHash: this.hashPassword(password),
+			cpf,
 		});
 
 		await this.usersRepository.save(user);
@@ -35,19 +36,29 @@ class UsersService {
 		return user;
 	}
 
-	//TODO: Think more about this
-	// async update(userData: IUserData) {
-	// 	const { email, name, password } = userData;
+	async update(userData: IUserData ) {
+	 	const { email, name, password } = userData;
 
-	// 	await this.usersRepository.update(
-	// 		{ email },
-	// 		{ name, password_hash: this.hashPassword(password) }
-	// 	);
+	 	const user = await this.usersRepository.update({email}, {email, name, passwordHash: this.hashPassword(password)})
 
-	// 	const user = this.findByEmail(email);
+	 	return user;
+	}
 
-	// 	return user;
-	// }
+	async delete(userData: IUserData){
+
+		const { email } = userData;
+
+		// const exists = await this.findByEmail(email)
+
+		// if(!exists) return false
+			
+		const deleting = this.usersRepository.delete({ email} )
+
+		return deleting
+
+
+
+	}
 
 	async findByEmail(email: string) {
 		return this.usersRepository.findOne({
