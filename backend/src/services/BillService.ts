@@ -10,46 +10,46 @@ class BillService {
 		this.billRepository = getCustomRepository(BillRepository);
 	}
 
-	// async create(billData: IBillData) {
-	// 	const {billId, expirationDate, paymentDate} = billData;
+	async create(billData: IBillData) {
+		const {id, expirationDate, paymentDate} = billData;
 
-	// 	const billExists = await this.billRepository.findOne({billId})
+		const billExists = await this.billRepository.findOne(id)
 
-	// 	if (billExists) return billExists;
+		if (billExists) return billExists;
 
-	// 	const newBill = this.billRepository.create({billId, expirationDate, paymentDate});
+		const newBill = this.billRepository.create({id, expirationDate, paymentDate});
 
-	// 	console.log('New Tenant:', newBill);
+		console.log('New Tenant:', newBill);
 
-	// 	await this.billRepository.save(newBill);
+		await this.billRepository.save(newBill);
 
-	// 	return newBill;
-	// }
+		return newBill;
+	}
 
-	// async findByID(billId: string) {
-	// 	return this.billRepository.findOne({ billId });
-	// }
+	async read() {
+		return this.billRepository.find();
+	}
 
 
-	// async update(billData: IBillData ) {
-	// 	const {billId, expirationDate, paymentDate} = billData;
+	async update(billData: IBillData ) {
+		const {id, expirationDate, paymentDate} = billData;
 
-	// 	const bill = await this.billRepository.update( { billId }, {expirationDate, paymentDate} )
+		const bill = await this.billRepository.update( { id }, {expirationDate, paymentDate} )
 	
-	// 	return bill;
-	// }
+		return bill;
+	}
 
 
 
-	// async delete(billData: IBillData){
+	async delete(billData: IBillData){
 
-	// 	const { billId } = billData
+		const { id } = billData
 		
-	// 	const deleting = await this.billRepository.delete({billId})
+		const deleting = await this.billRepository.delete(id)
 
-	// 	return deleting
+		return deleting
 
-	// }
+	}
 
 
 }

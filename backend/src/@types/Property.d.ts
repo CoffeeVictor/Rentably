@@ -2,8 +2,8 @@ import { IAddressData } from "./Address";
 import { IBillData } from "./Bill";
 
 export interface IPropertyData {
-	address: IAddressData;
-	waterBillContract: IBillData;
-	eletricBillContract: IBillData;
+	address: string;
+	waterBillContract: string;
+	eletricBillContract: string;
 	propertyTaxNumber: number;
 }

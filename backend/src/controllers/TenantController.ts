@@ -15,11 +15,10 @@ class TenantController {
 
 
 	async read(request: Request, response: Response){
-		const email = request.body.email
 
-		const tenantsService = new TenantsService()
+		const tenantsService = new TenantsService();
 
-		const tenant = await tenantsService.findByEmail( email )
+		const tenant = await tenantsService.read();
 
 		if(tenant)
 			return response.json( tenant )
@@ -49,9 +48,7 @@ class TenantController {
 		const tenant = await tenantsService.delete( email )
 
 		return response.json(tenant)
-
-
-
+		
 	}
 
 

@@ -26,10 +26,8 @@ class TenantsService {
 		return newTenant;
 	}
 
-	async findByEmail(email: string) {
-		return this.tenantsRepository.findOne({
-			email,
-		});
+	async read() {
+		return this.tenantsRepository.find();
 	}
 
 

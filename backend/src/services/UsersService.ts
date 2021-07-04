@@ -20,7 +20,7 @@ class UsersService {
 	async create(userData: IUserData) {
 		const { email, name, password, cpf } = userData;
 
-		const userExists = await this.findByEmail(email);
+		const userExists = await this.usersRepository.findOne(email);
 
 		if (userExists) return false;
 
@@ -60,10 +60,8 @@ class UsersService {
 
 	}
 
-	async findByEmail(email: string) {
-		return this.usersRepository.findOne({
-			email,
-		});
+	async findByEmail() {
+		return this.usersRepository.find();
 	}
 }
 

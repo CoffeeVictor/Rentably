@@ -23,11 +23,11 @@ class UsersController {
 	}
 
 	async read(request: Request, response: Response) {
-		const email = request.body.email
+		//const email = request.body.email
 
 		const usersService = new UsersService()
 
-		const user = await usersService.findByEmail(email)
+		const user = await usersService.findByEmail()
 
 		if (user)
 			return response.json(user)

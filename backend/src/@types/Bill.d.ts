@@ -1,7 +1,7 @@
 import { IContractData } from "./Contract";
 
 export interface IBillData {
-	billId: string;
+	id: string;
 	expirationDate: Date;
 	paymentDate: Date;
 }
