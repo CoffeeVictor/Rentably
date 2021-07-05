@@ -1,0 +1,94 @@
+@import '../../styles/variables.scss';
+@import '../../styles/global.scss';
+
+.menu {
+	position: absolute;
+	width: 100px;
+	height: 550px;
+	left: 30px;
+	top: 35px;
+	display: flex;
+	flex-direction: column;
+	background: #020216;
+	border-radius: 40px;	
+	align-items: center;
+	img {
+		width: 110px;
+		padding: 25px;
+
+	}
+	a {
+		padding: 35px;
+		color: #D9F4E7;
+	}
+	a:hover {
+		color: #00FF85;
+	}
+
+}
+
+.page {
+	position: absolute;
+	width: 1214px;
+	height: 620px;
+	left: 152px;
+	top: 0px;
+
+	input {
+		width: 600px;
+		height: 50px;
+		left: 168px;
+		top: 40px;
+		background: #020216;
+		border-radius: 20px;
+		margin-top: 45px;
+	}
+
+	.head {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+	}
+
+	.icons {
+		.csv {
+			width: 85px;
+			height: 70px;
+		}
+		.add {
+			width: 70px;
+			height: 70px;
+		}
+
+		margin-top: 40px;
+		margin-left: 325px;
+		
+	}	
+	.list {
+
+		ul {
+			margin-top: 30px;
+		}
+		
+		li {
+			background: #020216;
+			border-radius: 20px;
+			width: 1130px;
+			height: 60px;
+			text-decoration: none;
+			list-style-type: none;
+			padding: 12px;
+			margin-top: 30px;
+			
+		}
+
+		label {
+			color:#D9F4E7;	
+		}
+		
+	
+		
+	}
+	
+	
+}

@@ -7,12 +7,28 @@ import Validate1 from './views/Validate1';
 import Validate2 from './views/Validate2';
 import RedefinePassword1 from './views/RedefinePassword1';
 import RedefinePassword2 from './views/RedefinePassword2';
+import AddRents from './views/AddRents'
+import ViewRents from './views/ViewRents'
+import EditRents from './views/EditRents'
+import Graphics from './views/Graphics';
 
 const Routes: React.FC = () => {
 	return (
 		<>
-			<Route exact path="/">
+			<Route exact path="/home">
 				<Home />
+			</Route>
+			<Route exact path="/add">
+				<AddRents />
+			</Route>
+			<Route exact path="/view">
+				<ViewRents />
+			</Route>
+			<Route exact path="/edit">
+				<EditRents />
+			</Route>
+			<Route exact path="/graphs">
+				<Graphics />
 			</Route>
 			<Route path="/login">
 				<Login />

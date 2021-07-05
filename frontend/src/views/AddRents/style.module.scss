@@ -1,0 +1,74 @@
+@import '../../styles/variables.scss';
+@import '../../styles/global.scss';
+
+.menu {
+	position: absolute;
+	width: 100px;
+	height: 550px;
+	left: 30px;
+	top: 35px;
+	display: flex;
+	flex-direction: column;
+	background: #020216;
+	border-radius: 40px;	
+	align-items: center;
+}
+.menu img{
+	width: 110px;
+	padding: 25px;
+
+}
+.menu a{
+	padding: 35px;
+	color: #D9F4E7;
+}
+.menu a:hover {
+	color: #00FF85;
+}
+
+.page {
+	position: absolute;
+	width: 1214px;
+	height: 620px;
+	left: 152px;
+	top: 0px;
+
+	input {
+		width: 300px;
+		height: 35px;
+		left: 168px;
+		top: 40px;
+		background: #020216;
+		border-radius: 10px;
+		margin-top: 20px;
+	}
+
+	.conteiner {
+		display: flex;
+  		flex-wrap: nowrap;
+	}
+
+	.form {
+		margin-top: 50px;
+		margin-left: 60px;
+		
+		h1 {
+			padding-bottom: 42px;
+		}
+		
+		.file {
+			width: 300px;
+			height: 60px;
+			padding: 20px;
+		}
+	}
+
+	button {
+		width: 300px;
+		height: 35px;
+		margin: 0px;
+		margin-top: 20px;
+		font-weight: bold;
+	}
+
+}
