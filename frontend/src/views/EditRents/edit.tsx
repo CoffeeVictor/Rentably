@@ -6,17 +6,17 @@ import { Form } from '@unform/web';
 import { Button } from '../../components/Button';
 
 interface IData {
-	rua: string;
-    bairro: string;
-    numero: string;
-    cep: string;
-    nprefeitura: string;
-    ncompesa: string;
-    ncelpe: string;
-    valor: string;
-    dia: string;
-    finalidade: string;
-    nome: string;
+	street: string;
+    city: string;
+    state: string;
+    number: string;
+    zipCode: string;
+    propertyTaxNumber: string;
+    waterBillContract: string;
+    eletricBillContract: string;
+    rent: string;
+    payday: string;
+    name: string;
     email: string;
 }
 
@@ -30,63 +30,64 @@ export const EditRent: React.FC = () => {
             <Form onSubmit={handleSubmit} className={styles.conteiner}>
                 <div className={styles.form}>
                     <FormItem>
-                        <h1>Dados do imóvel</h1>
+                        <h1>Property data</h1>
                     </FormItem>
                     <FormItem>
-                        <Input name="rua" type="text" placeholder="Rua" />
+                        <Input name="street" type="text" placeholder="Street"/>
                     </FormItem>
                     <FormItem>
-                        <Input name="bairro" type="text" placeholder="Bairro"/>
+                        <Input name="number" type="text" placeholder="Number"/>
                     </FormItem>
                     <FormItem>
-                        <Input name="numero" type="text" placeholder="Número"/>
+                        <Input name="state" type="text" placeholder="State"/>
                     </FormItem>
                     <FormItem>
-                        <Input name="cep" type="text" placeholder="CEP"/>
+                        <Input name="city" type="text" placeholder="City"/>
                     </FormItem>
                     <FormItem>
-                        <Input name="nprefeitura" type="text" placeholder="Nº prefeitura"/>
+                        <Input name="zipCode" type="text" placeholder="Zip Code"/>
                     </FormItem>
                     <FormItem>
-                        <Input name="ncompesa" type="text" placeholder="Nº compesa"/>
+                        <Input name="propertyTaxNumber" type="text" placeholder="Property Tax Number"/>
                     </FormItem>
                     <FormItem>
-                        <Input name="ncelpe" type="text" placeholder="Nº celpe"/>
+                        <Input name="waterBillContract" type="text" placeholder="Water Bill Contract"/>
+                    </FormItem>
+                    <FormItem>
+                        <Input name="eletricBillContract" type="text" placeholder="Eletric Bill Contract"/>
                     </FormItem>
                 </div>
                 <div className={styles.form}>
                     <FormItem>
-                        <h1>Contrato do aluguel</h1>
+                        <h1>Rent contract</h1>
                     </FormItem>
                     <FormItem>
-                        <Input name="valor" type="text" placeholder="Valor"/>
+                        <Input name="rent" type="text" placeholder="Rent"/>
                     </FormItem>
                     <FormItem>
-                        <Input name="dia" type="text" placeholder="Dia do pagamento"/>
-                    </FormItem>
-                    <FormItem>
-                        <Input name="finalidade" type="text" placeholder="Finalidade do imóvel alugado"/>
+                        <Input name="payday" type="text" placeholder="Payday"/>
                     </FormItem>
                  
                 </div>
                 <div className={styles.form}>
                     <FormItem>
-                        <h1>Dados do locatário</h1>
+                        <h1>Tenant data</h1>
                     </FormItem>
                     <FormItem>
-                        <Input name="nome" type="text" placeholder="Nome"/>
+                        <Input name="name" type="text" placeholder="Name"/>
                     </FormItem>
                     <FormItem>
                         <Input name="email" type="email" placeholder="Email"/>
                     </FormItem>
                     <FormItem>
-                        <Button type={'submit'}>Salvar alterações</Button>
+                        <Button type={'button'}>Save</Button>
                     </FormItem>
                     <FormItem>
-                        <Button type={'submit'}>Cancelar</Button>
+                        <Button type={'button'}>Cancel</Button>
                     </FormItem>
                 </div>
             </Form>
+            
         </div>
 
 	);

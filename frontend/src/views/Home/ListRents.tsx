@@ -7,14 +7,15 @@ import api from '../../services/api';
 import { Form } from '@unform/web';
 import csv from "../../components/Images/icon-csv.png";
 import add from "../../components/Images/icon-add-rent.png";
+
 interface IData {
 	search: string;
 }
 
 export const ListRents: React.FC = () => {
-    const rents = [ {endereco: 'Rua da paz', nome: 'Seu José', finalidade: 'Comércio'}, 
-                    {endereco: 'Rua da saudade', nome: 'Seu Gustavo', finalidade: 'Residência'}, 
-                    {endereco: 'Rua da horta', nome: 'Dona Maria', finalidade: 'Estacionamento'}];
+    const rents = [ {endereco: 'Rua da paz', nome: 'Seu José'}, 
+                    {endereco: 'Rua da saudade', nome: 'Seu Gustavo'}, 
+                    {endereco: 'Rua da horta', nome: 'Dona Maria'}];
 	return (
         <div>
             <div className={styles.head}>
@@ -31,10 +32,9 @@ export const ListRents: React.FC = () => {
                     {
                         rents.map(rent =>
                         <li>
-                            <a>
-                                <label className={styles.endereco}> <FontAwesomeIcon icon={faMapMarkerAlt} size="2x"/> {rent.endereco}</label>
-                                <label className={styles.nome}> <FontAwesomeIcon icon={faUser} size="2x"/> {rent.nome} </label>
-                                <label className={styles.finalidade}> <FontAwesomeIcon icon={faFileContract} size="2x"/> {rent.finalidade} </label>
+                            <a href="/view">
+                                <label> <FontAwesomeIcon icon={faMapMarkerAlt} size="2x"/> {rent.endereco}</label>
+                                <label> <FontAwesomeIcon icon={faUser} size="2x"/> {rent.nome} </label>
                             </a>
                         </li>)
                     }
