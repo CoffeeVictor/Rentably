@@ -1,14 +1,15 @@
-import { Column, Entity, OneToOne, PrimaryColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from 'typeorm';
 import { v4 as uuid } from 'uuid';
 import { Address } from './Address';
 
-@Entity("properties")
+@Entity('properties')
 export class Property {
-    @PrimaryColumn()
+	@PrimaryColumn()
 	id: string;
 
 	@OneToOne(() => Address)
-	address: string;
+	@JoinColumn()
+	address: Address;
 
 	@Column({
 		nullable: true,
@@ -21,7 +22,7 @@ export class Property {
 	eletricBillContract: string;
 
 	@Column()
-	propertyTaxNumber: number;
+	propertyTaxNumber: string;
 
 	constructor() {
 		if (!this.id) {

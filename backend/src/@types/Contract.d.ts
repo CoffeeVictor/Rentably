@@ -1,24 +1,24 @@
 import { IBillData } from './Bill';
 
 export interface IContractData {
-	rent: Number;
-	payday: Number;
+	rent: number;
+	payday: number;
 	tenant: {
-		email: String;
-		name: String;
+		email: string;
+		name: string;
 	};
 	property: {
-		waterBillContract?: String;
-		electricBillContract?: String;
-		propertyTaxNumber: String;
+		waterBillContract?: string;
+		electricBillContract?: string;
+		propertyTaxNumber: string;
 		address: {
-			contry: String;
-			state?: String;
-			city?: String;
-			street?: String;
-			number: Number;
-			zipCode: String;
+			country: string;
+			state?: string;
+			city?: string;
+			street?: string;
+			number: number;
+			zipCode: string;
 		};
 	};
-	bill?: [IBillData]; //Apenas no            get, não vem em posts
+	bill?: [IBillData]; //Apenas no get, não vem em posts
 }
