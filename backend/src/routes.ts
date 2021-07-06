@@ -10,9 +10,9 @@ const usersController = new UsersController();
 const authController = new AuthController();
 const tenantController = new TenantController();
 
-routes.get('/', (request, response) => {
+routes.get('/ping', (request, response) => {
 	return response.json({
-		message: 'Hello World from SERVER!',
+		message: 'pong',
 	});
 });
 
@@ -22,6 +22,6 @@ routes.post('/users', usersController.create);
 
 routes.post('/auth/login', authController.login);
 
-routes.post('/tenants', tenantController.create);
+routes.get('/abc', tenantController.create);
 
 export { routes };
