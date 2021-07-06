@@ -1,6 +1,7 @@
 import styles from './styles.module.scss';
 import { RegisterForm } from './RegisterForm';
 import Logo from "../../components/Images/logo.png";
+import { Button } from '../../components/Button';
 
 
 export default function Register() {
@@ -10,7 +11,7 @@ export default function Register() {
 				<div className={styles.logoContainer}>	
 				<img src={Logo}></img>
 				<h1>Rentably</h1>
-				<p>Seja bem-vindo ao seu gerenciador de imóveis e aluguéis</p>
+					<p>Seja bem-vindo ao seu gerenciador de imóveis e aluguéis</p>
 				</div>
 				<div className={styles.formContainer}>
 					<RegisterForm />

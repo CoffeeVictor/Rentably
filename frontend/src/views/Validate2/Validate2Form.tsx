@@ -2,7 +2,6 @@ import React from 'react';
 import { Form } from '@unform/web';
 import { Input, PasswordInput } from '../../components/Input';
 import { Button } from '../../components/Button';
-import api from '../../services/api';
 import styles from './styles.module.scss';
 import goBack from "../../components/Images/goBackIcon.png";
 
@@ -36,6 +35,4 @@ export const Validate2Form: React.FC = () => {
 
 async function handleSubmit(data: IData) {
 	window.location.href = "./login"
-	const response = await api.post('auth/login', data);
-	console.log('Response:', response.data);
 }

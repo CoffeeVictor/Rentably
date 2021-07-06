@@ -1,14 +1,15 @@
 import React from 'react';
 import { Form } from '@unform/web';
-import { Input } from '../../components/Input';
+import { Input, PasswordInput} from '../../components/Input';
 import { Button } from '../../components/Button';
-import api from '../../services/api';
 import styles from './styles.module.scss';
 import goBack from "../../components/Images/goBackIcon.png";
 
 
 interface IData {
 	email: string;
+	cpf: string;
+	password: string;
 }
 
 const FormItem: React.FC = ({ children }) => {
@@ -28,14 +29,18 @@ export const RedefinePassword1Form: React.FC = () => {
 				<Input name={'email'} type={'email'} placeholder={'Type your email'} />
 			</FormItem>
 			<FormItem>
-				<Button type={'submit'}>Send</Button>
+				<Input name={'cpf'} type={'email'} placeholder={'Type your cpf'} />
+			</FormItem>
+			<FormItem>
+					<PasswordInput />
+			</FormItem>
+			<FormItem>
+				<Button type={'submit'}>Change Password</Button>
 			</FormItem>
 	</Form>	
 	);
 };
 
 async function handleSubmit(data: IData) {
-	window.location.href = "./forgot2"
-	const response = await api.post('auth/login', data);
-	console.log('Response:', response.data);
+	window.location.href = "./login"
 }

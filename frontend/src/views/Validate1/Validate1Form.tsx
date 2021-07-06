@@ -37,6 +37,4 @@ export const Validate1Form: React.FC = () => {
 
 async function handleSubmit(data: IData) {
 	window.location.href = "./validate2"
-	const response = await api.post('auth/login', data);
-	console.log('Response:', response.data);
 }

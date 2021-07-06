@@ -25,7 +25,7 @@ export const RedefinePassword2Form: React.FC = () => {
 				<h2>Create new password</h2>
 			</FormItem>
 			<FormItem>
-				<PasswordInput />
+					<PasswordInput />
 			</FormItem>
 			<FormItem>
 				<PasswordInput />
