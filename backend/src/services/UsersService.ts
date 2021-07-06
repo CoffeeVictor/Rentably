@@ -60,8 +60,8 @@ class UsersService {
 
 	}
 
-	async findByEmail() {
-		return this.usersRepository.find();
+	async findByEmail(email:string) {
+		return this.usersRepository.findOne(email);
 	}
 }
 
