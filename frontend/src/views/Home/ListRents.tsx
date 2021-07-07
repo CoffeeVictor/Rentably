@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './style.module.scss';
 import { faMapMarkerAlt, faUser, faFileContract } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,10 +12,39 @@ interface IData {
 	search: string;
 }
 
+
 export const ListRents: React.FC = () => {
-    const rents = [ {endereco: 'Rua da paz', nome: 'Seu José'}, 
-                    {endereco: 'Rua da saudade', nome: 'Seu Gustavo'}, 
-                    {endereco: 'Rua da horta', nome: 'Dona Maria'}];
+    // const contractsJson = await onLoad()
+    // const rentsF = []
+    // //const contractsJson = JSON.stringify(sessionStorage.getItem('contracts'))
+    // if (contractsJson != null) {
+    //     contractsJson["contract"].forEach(({contract}) =>  {
+    //         rentsF.push({ endereco: contract['property'], nome: 'Seu José' })
+
+    //     })
+    // }
+
+    const [rents, setRents] = useState<any[]>([]);
+
+    useEffect(() => {
+        setRents([
+                    {
+                        endereco: 'Rua da paz',
+                        nome: 'Seu José'
+                    },
+                    {
+                        endereco: 'Rua da saudade',
+                        nome: 'Seu Gustavo'
+                    }, 
+                    {
+                        endereco: 'Rua da horta',
+                        nome: 'Dona Maria'
+                    }
+                ]
+            );
+    }, []);
+    
+
 	return (
         <div>
             <div className={styles.head}>
@@ -45,7 +74,20 @@ export const ListRents: React.FC = () => {
 	);
 };
 
+async function onLoad() {
+    const response = await api.get('/contracts')
+    console.log('Response:', response.data)
+    
+	/*const response2 = await fetch('http://localhost:8000/contracts', { method: 'GET' }).then((response) => response.json())
+	.then((json) => {
+        const contracts = sessionStorage.setItem('contracts', json)
+        console.log(json)
+        return json
+	})*/
+    return response.data
+    const contracts = sessionStorage.setItem('contracts', JSON.stringify(response.data))
+}
 async function handleSubmit(data: IData) {
-	const response = await api.post('auth/', data);
-	console.log('Response:', response.data);
+	const response = await api.post('auth/', data)
+	console.log('Response:', response.data)
 }

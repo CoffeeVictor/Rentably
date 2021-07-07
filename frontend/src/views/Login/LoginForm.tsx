@@ -2,7 +2,6 @@ import React from 'react';
 import { Form } from '@unform/web';
 import { Input, PasswordInput } from '../../components/Input';
 import { Button } from '../../components/Button';
-import api from '../../services/api';
 import styles from './styles.module.scss';
 //import { routes } from '../../../../backend/src/routes'
 
@@ -42,23 +41,19 @@ export const LoginForm: React.FC = () => {
 async function handleSubmit(data: IData) {
 	console.log(data);
 	//const teste = await api.get('/')
-	const response = await api.post('auth/login', data)
-	console.log(response);
-	const teste2 = await fetch('http://localhost:8000/', {method: 'GET'}).then((response) => response.json())
-	.then((json) => {
-			console.log(json)
-	})
-	//console.log('Response:', teste.json());
+	//const response = await api.post('auth/login', data)
+	
 	const requestData = {
 		method: 'POST',
 		body: JSON.stringify(data)
 	}
 	const response2 = await fetch('http://localhost:8000/auth/login', requestData).then((response) => response.json())
 	.then((json) => {
-			console.log(json)
+		const user = sessionStorage.setItem('user', json)
+		console.log(json)
 	})
-	const email = sessionStorage.setItem('userEmail', data['email'])
-	console.log(email)
+	const user = sessionStorage.setItem('user', JSON.stringify(data))
+	window.location.href = "./home"
 	//console.log('Response:', response.json());
 	//const response = await api.post('auth/login', data);
 	//const response = await api.post('auth/login', data);
