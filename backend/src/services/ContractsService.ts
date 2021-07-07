@@ -5,6 +5,18 @@ import { ContractRepository } from '../repositories/ContractRepository';
 import { getManager } from 'typeorm';
 import { User } from '../entities/User';
 
+interface IAuthUser {
+	email: string;
+	name: string;
+	password: string;
+	cpf: string;
+	id: string;
+}
+
+interface RequestDataDTO extends IContractData {
+	authUser: IAuthUser;
+}
+
 class ContractsService {
 	private contractsRepository: Repository<Contract>;
 
@@ -12,13 +24,10 @@ class ContractsService {
 		this.contractsRepository = getCustomRepository(ContractRepository);
 	}
 
-	async create(contractData: IContractData) {
+	async create(contractData: RequestDataDTO) {
 		let manager = getManager();
 		contractData.property.address;
-		const owner = await manager.findOne(
-			User,
-			'0b9be4b6-886b-4614-91cd-6070f060da83'
-		);
+		const owner = await manager.findOne(User, contractData.authUser.id);
 		const contract = this.contractsRepository.create({ ...contractData });
 		contract.owner = owner;
 		console.log('Contract:', contract);

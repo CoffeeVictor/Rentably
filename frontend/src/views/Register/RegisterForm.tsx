@@ -3,7 +3,7 @@ import { Form } from '@unform/web';
 import { Input, PasswordInput } from '../../components/Input';
 import { Button } from '../../components/Button';
 import styles from './styles.module.scss';
-
+import api from '../../services/api';
 
 interface IData {
 	name: string;
@@ -14,8 +14,6 @@ interface IData {
 const FormItem: React.FC = ({ children }) => {
 	return <div className={styles.formItem}>{children}</div>;
 };
-
-testePrint()
 
 export const RegisterForm: React.FC = () => {
 	return (
@@ -30,10 +28,13 @@ export const RegisterForm: React.FC = () => {
 				<Input name={'email'} type={'email'} placeholder={'Type your email'} />
 			</FormItem>
 			<FormItem>
+				<Input name={'cpf'} type={'text'} placeholder={'Type your cpf'} />
+			</FormItem>
+			<FormItem>
 				<PasswordInput />
 			</FormItem>
 			<FormItem>
-				<Button type={'submit'} >Registrate</Button>
+				<Button type={'submit'}>Registrate</Button>
 				<a href="/login">I already have an account</a>
 			</FormItem>
 		</Form>
@@ -41,22 +42,7 @@ export const RegisterForm: React.FC = () => {
 };
 
 async function handleSubmit(data: IData) {
-	
-	const requestData = {
-		method: 'POST',
-		body: JSON.stringify(data)
-	}
-	const response = await fetch('http://localhost:8000//users', requestData).then((response) => response.json())
-	.then((json) => {
-			console.log(json)
-	})
+	console.log('data:', data);
 
-	const email = sessionStorage.getItem('userEmail')
-	console.log(email)
-	window.location.href = "./login"
-}
-
-async function testePrint() {
-	const email = sessionStorage.getItem('userEmail')
-	console.log(email)
+	api.post('/users', data);
 }

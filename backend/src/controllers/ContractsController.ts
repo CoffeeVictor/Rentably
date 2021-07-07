@@ -2,13 +2,19 @@ import { Request, Response } from 'express';
 import { IContractData } from '../@types/Contract';
 import { ContractsService } from '../services/ContractsService';
 
+interface IAuthUser {
+	email: string;
+	name: string;
+	cpf: string;
+	id: string;
+}
+
+interface RequestDataDTO extends IContractData {
+	authUser: IAuthUser;
+}
 class ContractsController {
 	async list(request: Request, response: Response) {
-		//const user = request.user;
-
-		const user = {
-			id: '0b9be4b6-886b-4614-91cd-6070f060da83',
-		}; //TODO: Change later for JWT based user
+		const user = request.body.authUser;
 
 		const contractsService = new ContractsService();
 
@@ -16,8 +22,9 @@ class ContractsController {
 
 		return response.json(contractList);
 	}
+
 	async create(request: Request, response: Response): Promise<Response> {
-		const data: IContractData = request.body;
+		const data: RequestDataDTO = request.body;
 
 		const contractsService = new ContractsService();
 

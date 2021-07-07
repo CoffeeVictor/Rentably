@@ -7,9 +7,9 @@ import Validate1 from './views/Validate1';
 import Validate2 from './views/Validate2';
 import RedefinePassword1 from './views/RedefinePassword1';
 import RedefinePassword2 from './views/RedefinePassword2';
-import AddRents from './views/AddRents'
-import ViewRents from './views/ViewRents'
-import EditRents from './views/EditRents'
+import AddRents from './views/AddRents';
+import ViewRents from './views/ViewRents';
+import EditRents from './views/EditRents';
 import Graphics from './views/Graphics';
 
 const Routes: React.FC = () => {
@@ -41,12 +41,6 @@ const Routes: React.FC = () => {
 			</Route>
 			<Route path="/validate2">
 				<Validate2 />
-			</Route>
-			<Route path="/forgot">
-				<RedefinePassword1 />
-			</Route>
-			<Route path="/forgot2">
-				<RedefinePassword2 />
 			</Route>
 		</>
 	);

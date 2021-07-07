@@ -4,8 +4,7 @@ import { Input, PasswordInput } from '../../components/Input';
 import { Button } from '../../components/Button';
 import api from '../../services/api';
 import styles from './styles.module.scss';
-//import { routes } from '../../../../backend/src/routes'
-
+import { useHistory } from 'react-router-dom';
 
 interface IData {
 	email: string;
@@ -17,6 +16,18 @@ const FormItem: React.FC = ({ children }) => {
 };
 
 export const LoginForm: React.FC = () => {
+	const history = useHistory();
+
+	const handleSubmit = async (data: IData) => {
+		const response = await api.post('auth/login', data);
+
+		const { user } = response.data;
+
+		window.sessionStorage.setItem('user', user);
+
+		history.push('/view');
+	};
+
 	return (
 		<Form onSubmit={handleSubmit}>
 			<FormItem>
@@ -35,32 +46,6 @@ export const LoginForm: React.FC = () => {
 			<FormItem>
 				<a href="/register">Create new account</a>
 			</FormItem>
-	</Form>	
+		</Form>
 	);
 };
-
-async function handleSubmit(data: IData) {
-	console.log(data);
-	//const teste = await api.get('/')
-	const response = await api.post('auth/login', data)
-	console.log(response);
-	const teste2 = await fetch('http://localhost:8000/', {method: 'GET'}).then((response) => response.json())
-	.then((json) => {
-			console.log(json)
-	})
-	//console.log('Response:', teste.json());
-	const requestData = {
-		method: 'POST',
-		body: JSON.stringify(data)
-	}
-	const response2 = await fetch('http://localhost:8000/auth/login', requestData).then((response) => response.json())
-	.then((json) => {
-			console.log(json)
-	})
-	const email = sessionStorage.setItem('userEmail', data['email'])
-	console.log(email)
-	//console.log('Response:', response.json());
-	//const response = await api.post('auth/login', data);
-	//const response = await api.post('auth/login', data);
-	//console.log('Response:', response.data);
-}

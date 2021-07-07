@@ -17,7 +17,7 @@ class AuthController {
 				.send({ message: 'Incorrect email or password' });
 		}
 
-		return response.json({ user: usersService.findByEmail(email) });
+		return response.json({ user: await usersService.findByEmail(email) });
 	}
 }
 
