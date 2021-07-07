@@ -1,9 +1,9 @@
+import { Form } from '@unform/web';
 import React from 'react';
-import styles from './style.module.scss';
+import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
 import api from '../../services/api';
-import { Form } from '@unform/web';
-import { Button } from '../../components/Button';
+import styles from './style.module.scss';
 
 interface IData {
 	street: string;

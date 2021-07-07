@@ -1,11 +1,9 @@
-import React from 'react';
 import { Form } from '@unform/web';
-import { Input, PasswordInput } from '../../components/Input';
+import React from 'react';
 import { Button } from '../../components/Button';
-import api from '../../services/api';
+import goBack from '../../components/Images/goBackIcon.png';
+import { Input } from '../../components/Input';
 import styles from './styles.module.scss';
-import goBack from "../../components/Images/goBackIcon.png";
-
 
 interface IData {
 	email: string;
@@ -19,8 +17,8 @@ const FormItem: React.FC = ({ children }) => {
 export const Validate1Form: React.FC = () => {
 	return (
 		<Form onSubmit={handleSubmit}>
-			<a className={styles.goBackButton} href={"./register"}>
-				<img src={goBack} ></img>
+			<a className={styles.goBackButton} href={'./register'}>
+				<img src={goBack}></img>
 			</a>
 			<FormItem>
 				<h2>Type your email</h2>
@@ -31,10 +29,10 @@ export const Validate1Form: React.FC = () => {
 			<FormItem>
 				<Button type={'submit'}>Send confirmation</Button>
 			</FormItem>
-	</Form>	
+		</Form>
 	);
 };
 
 async function handleSubmit(data: IData) {
-	window.location.href = "./validate2"
+	window.location.href = './validate2';
 }

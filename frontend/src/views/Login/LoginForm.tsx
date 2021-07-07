@@ -1,15 +1,11 @@
-import React from 'react';
 import { Form } from '@unform/web';
-import { Input, PasswordInput } from '../../components/Input';
+import React from 'react';
+import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Button } from '../../components/Button';
+import { Input, PasswordInput } from '../../components/Input';
 import api from '../../services/api';
 import styles from './styles.module.scss';
-import { useHistory } from 'react-router-dom';
-
-interface IData {
-	email: string;
-	password: string;
-}
 
 const FormItem: React.FC = ({ children }) => {
 	return <div className={styles.formItem}>{children}</div>;
@@ -18,14 +14,22 @@ const FormItem: React.FC = ({ children }) => {
 export const LoginForm: React.FC = () => {
 	const history = useHistory();
 
-	const handleSubmit = async (data: IData) => {
-		const response = await api.post('auth/login', data);
+	const [failedLogin, setFailedLogin] = useState(false);
 
-		const { user } = response.data;
+	const handleSubmit = async (data: any) => {
+		try {
+			const response = await api.post('auth/login', data);
 
-		window.sessionStorage.setItem('user', user);
+			const { user } = response.data;
 
-		history.push('/view');
+			window.localStorage.setItem('authUser', JSON.stringify(user));
+
+			history.push('/');
+		} catch (error) {
+			if (error.response && error.response.status === 401) {
+				setFailedLogin(true);
+			}
+		}
 	};
 
 	return (
@@ -39,9 +43,11 @@ export const LoginForm: React.FC = () => {
 			<FormItem>
 				<PasswordInput />
 			</FormItem>
+			{failedLogin && (
+				<span style={{ color: '#FF2222' }}>Wrong credentials</span>
+			)}
 			<FormItem>
 				<Button type={'submit'}>Log in</Button>
-				<a href="/forgot">Forgot your Password?</a>
 			</FormItem>
 			<FormItem>
 				<a href="/register">Create new account</a>

@@ -1,10 +1,9 @@
-import React from 'react';
 import { Form } from '@unform/web';
-import { Input, PasswordInput} from '../../components/Input';
+import React from 'react';
 import { Button } from '../../components/Button';
+import goBack from '../../components/Images/goBackIcon.png';
+import { Input, PasswordInput } from '../../components/Input';
 import styles from './styles.module.scss';
-import goBack from "../../components/Images/goBackIcon.png";
-
 
 interface IData {
 	email: string;
@@ -19,8 +18,8 @@ const FormItem: React.FC = ({ children }) => {
 export const RedefinePassword1Form: React.FC = () => {
 	return (
 		<Form onSubmit={handleSubmit}>
-			<a className={styles.goBackButton} href={"./login"}>
-				<img src={goBack} ></img>
+			<a className={styles.goBackButton} href={'./login'}>
+				<img src={goBack}></img>
 			</a>
 			<FormItem>
 				<h2>Forgot your Password?</h2>
@@ -32,15 +31,15 @@ export const RedefinePassword1Form: React.FC = () => {
 				<Input name={'cpf'} type={'email'} placeholder={'Type your cpf'} />
 			</FormItem>
 			<FormItem>
-					<PasswordInput />
+				<PasswordInput />
 			</FormItem>
 			<FormItem>
 				<Button type={'submit'}>Change Password</Button>
 			</FormItem>
-	</Form>	
+		</Form>
 	);
 };
 
 async function handleSubmit(data: IData) {
-	window.location.href = "./login"
+	window.location.href = './login';
 }

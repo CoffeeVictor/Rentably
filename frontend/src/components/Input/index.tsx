@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
 import { useField } from '@unform/core';
-import { FaEyeSlash, FaEye } from 'react-icons/fa';
+import { useEffect, useRef, useState } from 'react';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import styles from './styles.module.scss';
 
 interface IProps {

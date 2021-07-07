@@ -1,21 +1,39 @@
-import styles from './styles.module.scss';
-import { Validate2Form } from './Validate2Form';
-import Logo from "../../components/Images/logo.png";
-
+import { useEffect, useState } from 'react';
+import { IContractData } from '../../../../backend/src/@types/Contract';
+import api from '../../services/api';
 
 export default function Validate2() {
+	const [contracts, setContracts] = useState<IContractData[]>([]);
+
+	useEffect(() => {
+		let data: any = {};
+
+		const user = JSON.parse(window.sessionStorage.getItem('user') || '{}');
+
+		if (window.sessionStorage.getItem('user')) {
+			console.log('user:', user);
+			data.authUser = user;
+		} else {
+			console.log('No user');
+		}
+
+		api
+			.get('/contracts', {
+				params: {
+					authUser: user,
+				},
+			})
+			.then(response => {
+				setContracts(response.data);
+			});
+	});
+
 	return (
-		<div className={styles.loginPage}>
-			<div className={styles.contentContainer}>
-				<div className={styles.logoContainer}>	
-				<img src={Logo} ></img>
-				<h1>Rentably</h1>
-				<p>Seja bem-vindo ao seu gerenciador de imóveis e aluguéis</p>
-				</div>
-				<div className={styles.formContainer}>
-					<Validate2Form />
-				</div>
-			</div>
-		</div>
+		<>
+			<h1>Howdy</h1>
+			{contracts.forEach(contract => {
+				return <div>{JSON.stringify(contract, null, 4)}</div>;
+			})}
+		</>
 	);
 }

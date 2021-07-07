@@ -1,9 +1,10 @@
-import React from 'react';
 import { Form } from '@unform/web';
-import { Input, PasswordInput } from '../../components/Input';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { Button } from '../../components/Button';
-import styles from './styles.module.scss';
+import { Input, PasswordInput } from '../../components/Input';
 import api from '../../services/api';
+import styles from './styles.module.scss';
 
 interface IData {
 	name: string;
@@ -16,6 +17,16 @@ const FormItem: React.FC = ({ children }) => {
 };
 
 export const RegisterForm: React.FC = () => {
+	const history = useHistory();
+
+	const handleSubmit = async (data: IData) => {
+		console.log('data:', data);
+
+		api.post('/users', data);
+
+		history.push('/login');
+	};
+
 	return (
 		<Form onSubmit={handleSubmit}>
 			<FormItem>
@@ -40,9 +51,3 @@ export const RegisterForm: React.FC = () => {
 		</Form>
 	);
 };
-
-async function handleSubmit(data: IData) {
-	console.log('data:', data);
-
-	api.post('/users', data);
-}

@@ -7,6 +7,7 @@ interface IAuthUser {
 	name: string;
 	cpf: string;
 	id: string;
+	password: string;
 }
 
 interface RequestDataDTO extends IContractData {
@@ -15,6 +16,8 @@ interface RequestDataDTO extends IContractData {
 class ContractsController {
 	async list(request: Request, response: Response) {
 		const user = request.body.authUser;
+
+		console.log('requestParams:', request.params);
 
 		const contractsService = new ContractsService();
 

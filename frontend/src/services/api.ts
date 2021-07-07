@@ -8,3 +8,7 @@ const api = axios.create({
 });
 
 export default api;
+
+export function getUser() {
+	return JSON.parse(window.localStorage.getItem('authUser'));
+}
