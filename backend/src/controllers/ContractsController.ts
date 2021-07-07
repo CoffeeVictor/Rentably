@@ -7,7 +7,7 @@ class ContractsController {
 		//const user = request.user;
 
 		const user = {
-			id: '0b9be4b6-886b-4614-91cd-6070f060da83',
+			id: '79922b34-2ccf-4f76-aac7-75bae832795a',
 		}; //TODO: Change later for JWT based user
 
 		const contractsService = new ContractsService();
