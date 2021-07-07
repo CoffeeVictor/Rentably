@@ -10,31 +10,13 @@ class UsersController {
 		const usersService = new UsersService();
 
 		const user = await usersService.create({ email, name, password, cpf });
-		if (user){
+		if (user) {
 			const responseData = cleanUser(user);
 			return response.json(responseData);
+		} else {
+			return response.status(401).send({ message: 'Email already taken' });
 		}
-		else{
-			return response
-				   .status(401)
-				   .send({ message: 'Email already taken' });
-		}
-		
 	}
-
-	// async update(request: Request, response: Response) {
-	// 	const { email } = request.params;
-
-	// 	const { name, password } = request.body;
-
-	// 	const usersService = new UsersService();
-
-	// 	const user = await usersService.update({ email, name, password });
-
-	// 	if(!user)
-
-	// 	return response.json(user);
-	// }
 }
 
 function cleanUser(user: User) {
