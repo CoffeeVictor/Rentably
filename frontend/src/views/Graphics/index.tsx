@@ -7,8 +7,31 @@ import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IContractData } from '../../../../backend/src/@types/Contract';
 import api from '../../services/api';
+import React, { useEffect, useState } from 'react';
 
 export default function Graphs() {
+
+	const [dataStates, setDataStates] = useState<any[]>([]);
+	const [dataStateRents, setDataStateRents] = useState<any[]>([]);
+	const [dataPieChart, setDataPieChart] = useState<any[]>([]);
+	const [dataRentsPerProperty, setDataRentsPerProperty] = useState<any[]>([]);
+
+	useEffect(() => {
+		const loadData = async () => {
+			const dataSt = await getContractStates()
+			const dataStRents = await getContractRentsPerState()
+			const dataPie = await getRents3GreatestAndOthers()
+			const dataRenPerProp = await getRentsPerProperty()
+			setDataStates(dataSt)
+			setDataStateRents(dataStRents)
+			setDataPieChart(dataPie)
+			setDataRentsPerProperty(dataRenPerProp)
+		}
+
+
+
+		loadData()
+	}, [])
 	return (
 		<div>
 			<div className={styles.menu}>
@@ -18,8 +41,7 @@ export default function Graphs() {
 				<a style={{ padding: "160px", transform: "rotate(180deg)" }} href="/login"><FontAwesomeIcon icon={faSignOutAlt} size="2x" /></a>
 			</div>
 			<div className={styles.page}>
-				<Charts />
-				<button className="square" onClick={getRentsPerProperty}></button>
+				<Charts labelSt={dataStates} valuesSt={dataStateRents} valuesPie={dataPieChart} valuesAndLabelsProp={dataRentsPerProperty} />
 			</div>
 		</div>
 	);
