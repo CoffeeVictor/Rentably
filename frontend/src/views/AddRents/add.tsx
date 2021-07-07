@@ -14,8 +14,8 @@ interface IData {
     propertyTaxNumber: string;
     waterBillContract: string;
     eletricBillContract: string;
-    rent: string;
-    payday: string;
+    rent: number;
+    payday: number;
     name: string;
     email: string;
 }
@@ -62,10 +62,10 @@ export const AddRent: React.FC = () => {
                         <h1>Rent contract</h1>
                     </FormItem>
                     <FormItem>
-                        <Input name="rent" type="text" placeholder="Rent"/>
+                        <Input name="rent" type="number" placeholder="Rent"/>
                     </FormItem>
                     <FormItem>
-                        <Input name="payday" type="text" placeholder="Payday"/>
+                        <Input name="payday" type="number" placeholder="Payday"/>
                     </FormItem>
                  
                 </div>
@@ -80,7 +80,7 @@ export const AddRent: React.FC = () => {
                         <Input name="email" type="email" placeholder="Email"/>
                     </FormItem>
                     <FormItem>
-                        <Button type={'button'}>Save new contract</Button>
+                        <Button type={'submit'}>Save new contract</Button>
                     </FormItem>
                 </div>
             </Form>
@@ -91,6 +91,28 @@ export const AddRent: React.FC = () => {
 };
 
 async function handleSubmit(data: IData) {
-	const response = await api.post('auth/', data);
-	console.log('Response:', response.data);
+    const json = {
+                    "rent": data.rent,
+                    "payday": data.payday,
+                    "tenant": {
+                        "email": data.email,
+                        "name": data.name
+                    },
+                    "property": {
+                        "waterBillContract": data.waterBillContract,
+                        "electricBillContract": data.eletricBillContract,
+                        "propertyTaxNumber": data.propertyTaxNumber,
+                        "address": {
+                        "country": data.number,
+                        "state": data.state,
+                        "city": data.city,
+                        "street": data.street,
+                        "number": data.number,
+                        "zipCode": data.zipCode
+                        }
+                    }
+    }
+	const response = await api.post('/contracts', json);
+    console.log('Response:', response.data);
+    window.location.href = "./home"
 }

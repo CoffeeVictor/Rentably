@@ -32,7 +32,22 @@ export const ListRents: React.FC = () => {
         const loadData = async () => {
             const {data} = await api.get('/contracts');
             console.log('Data:', data)
-            setRents(data.map((entry: IContractData) => ({address:entry.property.address.city, name:entry.tenant.name})))
+            setRents(data.map((entry: IContractData) => ({
+                rent: entry.rent,
+                payday: entry.payday,
+                tenantName: entry.tenant.name,
+                tenantEmail: entry.tenant.email,
+                property_waterBillContract: entry.property.waterBillContract,
+                property_electricBillContract: entry.property.electricBillContract,
+                property_propertyTaxNumber: entry.property.propertyTaxNumber,
+                property_addressCity: entry.property.address.city,
+                property_addressCountry: entry.property.address.country,
+                property_addressState: entry.property.address.state,
+                property_addressStreet: entry.property.address.street,
+                property_addressNumber: entry.property.address.number,
+                property_addressZipCode: entry.property.address.zipCode
+
+            })))
 
         };
 
@@ -72,9 +87,9 @@ export const ListRents: React.FC = () => {
                     {
                         rents.map(rent =>
                         <li>
-                            <a href="/view">
-                                <label> <FontAwesomeIcon icon={faMapMarkerAlt} size="2x"/> {rent.address}</label>
-                                <label> <FontAwesomeIcon icon={faUser} size="2x"/> {rent.name} </label>
+                            <a href="/view" onClick={() => onClickContract(rent)}>   
+                                <label> <FontAwesomeIcon icon={faMapMarkerAlt} size="2x"/> {rent.property_addressCity}</label>
+                                <label> <FontAwesomeIcon icon={faUser} size="2x"/> {rent.tenantName} </label>
                             </a>
                         </li>)
                     }
@@ -85,18 +100,8 @@ export const ListRents: React.FC = () => {
 	);
 };
 
-async function onLoad() {
-    const response = await api.get('/contracts')
-    console.log('Response:', response.data)
-    
-	/*const response2 = await fetch('http://localhost:8000/contracts', { method: 'GET' }).then((response) => response.json())
-	.then((json) => {
-        const contracts = sessionStorage.setItem('contracts', json)
-        console.log(json)
-        return json
-	})*/
-    return response.data
-    const contracts = sessionStorage.setItem('contracts', JSON.stringify(response.data))
+function onClickContract(rent: IContractData){
+    const rentInUse = sessionStorage.setItem('rentInUse', JSON.stringify(rent))
 }
 async function handleSubmit(data: IData) {
 	const response = await api.post('auth/', data)
