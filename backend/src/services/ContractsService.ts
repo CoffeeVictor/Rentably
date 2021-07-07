@@ -17,7 +17,7 @@ class ContractsService {
 		contractData.property.address;
 		const owner = await manager.findOne(
 			User,
-			'0b9be4b6-886b-4614-91cd-6070f060da83'
+			'c1aae7bc-884b-49c3-a857-11984f1015eb'
 		);
 		const contract = this.contractsRepository.create({ ...contractData });
 		contract.owner = owner;
