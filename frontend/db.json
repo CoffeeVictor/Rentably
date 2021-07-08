@@ -1,0 +1,53 @@
+{
+  "user": [
+    { "email": "teste@testando.com", "name": "Sabrina", "password": "1234"},
+    { "email": "", "name": "", "password": ""}
+  ],
+  "contract": [
+    {
+      "rent": "Number",
+      "payday": "Number",
+      "tenant": {
+        "email": "String",
+        "name": "String"
+      },
+      "property": {
+        "waterBillContract": "String",
+        "electricBillContract": "String",
+        "propertyTaxNumber": "String",
+        "address": {
+          "contry": "String",
+          "state": "String",
+          "city": "String",
+          "street": "String",
+          "number": "Number",
+          "zipCode": "String"
+        }
+      },
+      "bill": "[IBillData]"
+    },
+    {
+      "rent": 2,
+      "payday": 18,
+      "tenant": {
+        "email": "teste@teste.com",
+        "name": "Testandoooo"
+      },
+      "property": {
+        "waterBillContract": "367bdfkjhiu",
+        "electricBillContract": "3874heukjfhwhjke",
+        "propertyTaxNumber": "4574jhbkj384ui3hr",
+        "address": {
+          "contry": "Brasil",
+          "state": "Pernambuco",
+          "city": "Recife",
+          "street": "Rua São João",
+          "number": "9092",
+          "zipCode": "50761-040"
+        }
+      },
+      "bill": "[IBillData]"
+    }
+  ]
+  
+}

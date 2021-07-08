@@ -1,0 +1,62 @@
+@import '../../styles/variables.scss';
+@import '../../styles/global.scss';
+
+.menu {
+	position: absolute;
+	width: 100px;
+	height: 550px;
+	left: 30px;
+	top: 35px;
+	display: flex;
+	flex-direction: column;
+	background: #020216;
+	border-radius: 40px;	
+	align-items: center;
+	img {
+		width: 110px;
+		padding: 25px;
+
+	}
+	a {
+		padding: 35px;
+		color: #D9F4E7;
+	}
+	a:hover {
+		color: #00FF85;
+	}
+
+}
+
+.page {
+	position: absolute;
+	width: 1214px;
+	height: 620px;
+	left: 152px;
+	top: 0px;
+}
+
+.conteiner {
+	display: flex;
+	flex-wrap: nowrap;
+	margin-top: 50px;
+}
+
+.bar {
+	width: 500px;
+	height: 80px;
+	margin-left: 30px;
+	margin-right: 30px;
+}
+
+.pie {
+	margin-bottom: 60px;
+	width: 250px;
+	height: 220px;
+	margin-left: 30px;
+	margin-right: 30px;
+}
+
+h2 {
+	margin-bottom: 30px;	
+}
+
