@@ -5,7 +5,6 @@ import { Button } from '../../components/Button';
 import { Input, PasswordInput } from '../../components/Input';
 import api from '../../services/api';
 import styles from './styles.module.scss';
-import api from '../../services/api';
 
 interface IData {
 	email: string;
@@ -42,9 +41,6 @@ export const RegisterForm: React.FC = () => {
 			</FormItem>
 			<FormItem>
 				<Input name={'email'} type={'email'} placeholder={'Type your email'} />
-			</FormItem>
-			<FormItem>
-				<Input name={'cpf'} type={'text'} placeholder={'Type your cpf'} />
 			</FormItem>
 			<FormItem>
 				<PasswordInput />

@@ -5,6 +5,7 @@ import EditRents from './views/EditRents';
 import Graphics from './views/Graphics';
 import Home from './views/Home';
 import Login from './views/Login';
+import Logout from './views/Logout';
 import Register from './views/Register';
 import ViewRents from './views/ViewRents';
 
@@ -31,6 +32,9 @@ const Routes: React.FC = () => {
 			</Route>
 			<Route path="/register">
 				<Register />
+			</Route>
+			<Route path="/logout">
+				<Logout />
 			</Route>
 		</>
 	);

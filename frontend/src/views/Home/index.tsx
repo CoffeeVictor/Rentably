@@ -29,7 +29,7 @@ export default function List() {
 				</a>
 				<a
 					style={{ padding: '160px', transform: 'rotate(180deg)' }}
-					href="/login"
+					href="/logout"
 				>
 					<FontAwesomeIcon icon={faSignOutAlt} size="2x" />
 				</a>

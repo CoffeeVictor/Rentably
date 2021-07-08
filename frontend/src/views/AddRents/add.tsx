@@ -1,8 +1,9 @@
 import { Form } from '@unform/web';
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
-import api from '../../services/api';
+import api, { getUser } from '../../services/api';
 import styles from './style.module.scss';
 
 const FormItem: React.FC = ({ children }) => {
@@ -10,6 +11,17 @@ const FormItem: React.FC = ({ children }) => {
 };
 
 export const AddRent: React.FC = () => {
+	const history = useHistory();
+	const handleSubmit = async data => {
+		console.log('Submit data:', data);
+		await api.post('/contracts', data, {
+			headers: {
+				authUser: getUser().id,
+			},
+		});
+		history.push('/');
+	};
+
 	return (
 		<div>
 			<Form onSubmit={handleSubmit} className={styles.conteiner}>
@@ -18,37 +30,64 @@ export const AddRent: React.FC = () => {
 						<h1>Property data</h1>
 					</FormItem>
 					<FormItem>
-						<Input name="street" type="text" placeholder="Street" />
-					</FormItem>
-					<FormItem>
-						<Input name="number" type="text" placeholder="Number" />
-					</FormItem>
-					<FormItem>
-						<Input name="state" type="text" placeholder="State" />
-					</FormItem>
-					<FormItem>
-						<Input name="city" type="text" placeholder="City" />
-					</FormItem>
-					<FormItem>
-						<Input name="zipCode" type="text" placeholder="Zip Code" />
+						<Input
+							name="property.address.street"
+							type="text"
+							placeholder="Street"
+						/>
 					</FormItem>
 					<FormItem>
 						<Input
-							name="propertyTaxNumber"
+							name="property.address.number"
+							type="text"
+							placeholder="Number"
+						/>
+					</FormItem>
+					<FormItem>
+						<Input
+							name="property.address.country"
+							type="text"
+							placeholder="Country"
+						/>
+					</FormItem>
+					<FormItem>
+						<Input
+							name="property.address.state"
+							type="text"
+							placeholder="State"
+						/>
+					</FormItem>
+					<FormItem>
+						<Input
+							name="property.address.city"
+							type="text"
+							placeholder="City"
+						/>
+					</FormItem>
+					<FormItem>
+						<Input
+							name="property.address.zipCode"
+							type="text"
+							placeholder="Zip Code"
+						/>
+					</FormItem>
+					<FormItem>
+						<Input
+							name="property.propertyTaxNumber"
 							type="text"
 							placeholder="Property Tax Number"
 						/>
 					</FormItem>
 					<FormItem>
 						<Input
-							name="waterBillContract"
+							name="property.waterBillContract"
 							type="text"
 							placeholder="Water Bill Contract"
 						/>
 					</FormItem>
 					<FormItem>
 						<Input
-							name="eletricBillContract"
+							name="property.eletricBillContract"
 							type="text"
 							placeholder="Eletric Bill Contract"
 						/>
@@ -70,27 +109,16 @@ export const AddRent: React.FC = () => {
 						<h1>Tenant data</h1>
 					</FormItem>
 					<FormItem>
-						<Input name="name" type="text" placeholder="Name" />
+						<Input name="tenant.name" type="text" placeholder="Name" />
 					</FormItem>
 					<FormItem>
-						<Input name="email" type="email" placeholder="Email" />
+						<Input name="tenant.email" type="email" placeholder="Email" />
 					</FormItem>
 					<FormItem>
-						<Button type={'button'}>Save new contract</Button>
+						<Button type={'submit'}>Save new contract</Button>
 					</FormItem>
 				</div>
 			</Form>
 		</div>
 	);
 };
-
-async function handleSubmit(data: any) {
-	const user = JSON.parse(window.sessionStorage.getItem('user') || '');
-
-	if (user) {
-		data.authUser = user;
-	}
-
-	const response = await api.post('auth/', data);
-	console.log('Response:', response.data);
-}

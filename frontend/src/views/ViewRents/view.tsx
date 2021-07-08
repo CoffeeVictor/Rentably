@@ -1,8 +1,11 @@
+import { parse } from '@fortawesome/fontawesome-svg-core';
 import { Form } from '@unform/web';
-import React from 'react';
+import React, { useRef, useState } from 'react';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
-import api from '../../services/api';
+import api, { getUser } from '../../services/api';
 import styles from './style.module.scss';
 
 interface IData {
@@ -25,70 +28,119 @@ const FormItem: React.FC = ({ children }) => {
 };
 
 export const ViewRent: React.FC = () => {
+	const location: { state: { position: number } } = useLocation();
+
+	const [data, setData] = useState(null);
+
+	const formRef = useRef(null);
+
+	useEffect(() => {
+		const loadData = async () => {
+			const response = await api.get('/contracts', {
+				headers: {
+					authUser: getUser().id,
+				},
+			});
+
+			const unparsedData = response.data[location.state.position];
+
+			const parsedData = {
+				rent: unparsedData.rent,
+				payday: unparsedData.payday,
+				tenant: {
+					email: unparsedData.tenant.email,
+					name: unparsedData.tenant.name,
+				},
+				property: {
+					propertyTaxNumber: unparsedData.property.propertyTaxNumber,
+					waterBillContract: unparsedData.property.waterBillContract,
+					eletricBillContract: unparsedData.property.eletricBillContract,
+					address: {
+						street: unparsedData.property.address.street,
+						number: unparsedData.property.address.number,
+						country: unparsedData.property.address.country,
+						state: unparsedData.property.address.state,
+						city: unparsedData.property.address.city,
+						zipCode: unparsedData.property.address.zipCode,
+					},
+				},
+			};
+			setData(unparsedData);
+			formRef.current.setData(parsedData);
+		};
+		loadData();
+	}, []);
+
+	console.log('Data is:', data);
+
 	return (
 		<div>
-			<Form onSubmit={handleSubmit} className={styles.conteiner}>
+			<Form onSubmit={handleSubmit} className={styles.conteiner} ref={formRef}>
 				<div className={styles.form}>
 					<FormItem>
 						<h1>Property data</h1>
 					</FormItem>
 					<FormItem>
 						<Input
-							name="street"
+							name="property.address.street"
 							type="text"
 							placeholder="Street"
-							disabled={true}
 						/>
 					</FormItem>
 					<FormItem>
 						<Input
-							name="number"
+							name="property.address.number"
 							type="text"
 							placeholder="Number"
-							disabled={true}
 						/>
 					</FormItem>
 					<FormItem>
 						<Input
-							name="state"
+							name="property.address.country"
+							type="text"
+							placeholder="Country"
+						/>
+					</FormItem>
+					<FormItem>
+						<Input
+							name="property.address.state"
 							type="text"
 							placeholder="State"
-							disabled={true}
 						/>
 					</FormItem>
 					<FormItem>
-						<Input name="city" type="text" placeholder="City" disabled={true} />
+						<Input
+							name="property.address.city"
+							type="text"
+							placeholder="City"
+						/>
 					</FormItem>
 					<FormItem>
 						<Input
-							name="zipCode"
+							name="property.address.zipCode"
 							type="text"
 							placeholder="Zip Code"
-							disabled={true}
 						/>
 					</FormItem>
 					<FormItem>
 						<Input
-							name="propertyTaxNumber"
+							name="property.propertyTaxNumber"
 							type="text"
 							placeholder="Property Tax Number"
-							disabled={true}
 						/>
 					</FormItem>
 					<FormItem>
 						<Input
-							name="waterBillContract"
+							name="property.waterBillContract"
 							type="text"
 							placeholder="Water Bill Contract"
-							disabled={true}
 						/>
 					</FormItem>
 					<FormItem>
 						<Input
-							name="eletricBillContract"
+							name="property.eletricBillContract"
 							type="text"
 							placeholder="Eletric Bill Contract"
-							disabled={true}
 						/>
 					</FormItem>
 				</div>
@@ -97,15 +149,10 @@ export const ViewRent: React.FC = () => {
 						<h1>Rent contract</h1>
 					</FormItem>
 					<FormItem>
-						<Input name="rent" type="text" placeholder="Rent" disabled={true} />
+						<Input name="rent" type="text" placeholder="Rent" />
 					</FormItem>
 					<FormItem>
-						<Input
-							name="payday"
-							type="text"
-							placeholder="Payday"
-							disabled={true}
-						/>
+						<Input name="payday" type="text" placeholder="Payday" />
 					</FormItem>
 				</div>
 				<div className={styles.form}>
@@ -113,29 +160,19 @@ export const ViewRent: React.FC = () => {
 						<h1>Tenant data</h1>
 					</FormItem>
 					<FormItem>
-						<Input name="name" type="text" placeholder="Name" disabled={true} />
+						<Input name="tenant.name" type="text" placeholder="Name" />
 					</FormItem>
 					<FormItem>
-						<Input
-							name="email"
-							type="email"
-							placeholder="Email"
-							disabled={true}
-						/>
+						<Input name="tenant.email" type="email" placeholder="Email" />
 					</FormItem>
-					<FormItem>
-						<Button
-							type={'button'}
-							onClick={() => {
-								window.location.href = '/edit';
-							}}
-						>
+					{/* <FormItem>
+						<Button type={'button'} onClick={() => {}}>
 							Edit
 						</Button>
 					</FormItem>
 					<FormItem>
 						<Button type={'button'}>Delete</Button>
-					</FormItem>
+					</FormItem> */}
 				</div>
 			</Form>
 		</div>

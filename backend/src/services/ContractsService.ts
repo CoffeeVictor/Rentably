@@ -4,6 +4,7 @@ import { Contract } from '../entities/Contract';
 import { ContractRepository } from '../repositories/ContractRepository';
 import { getManager } from 'typeorm';
 import { User } from '../entities/User';
+import mailService from '../services/MailService';
 
 interface IAuthUser {
 	email: string;
@@ -24,13 +25,14 @@ class ContractsService {
 		this.contractsRepository = getCustomRepository(ContractRepository);
 	}
 
-	async create(contractData: RequestDataDTO) {
+	async create(contractData: RequestDataDTO, userId: string) {
 		let manager = getManager();
 		contractData.property.address;
-		const owner = await manager.findOne(User, contractData.authUser.id);
+		const owner = await manager.findOne(User, userId);
 		const contract = this.contractsRepository.create({ ...contractData });
 		contract.owner = owner;
 		console.log('Contract:', contract);
+		mailService.addContractToCron(contract, contractData.isPaying);
 		try {
 			//const something = await this.contractsRepository.save(contract);
 			await manager.save(contract.property.address);

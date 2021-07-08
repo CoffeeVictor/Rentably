@@ -4,7 +4,10 @@ import {
 	faSignOutAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useEffect, useState } from 'react';
+import { IContractData } from '../../../../backend/src/@types/Contract';
 import Logo from '../../components/Images/logo-sem-fundo.png';
+import api, { getUser } from '../../services/api';
 import { Charts } from './Charts';
 import styles from './style.module.scss';
 
@@ -61,12 +64,16 @@ export default function Graphs() {
 // []String
 // Gráfico: Aluguel total por estado
 async function getContractStates() {
-	const { data } = await api.get('/contracts');
+	const { data } = await api.get('/contracts', {
+		headers: {
+			authUser: getUser().id,
+		},
+	});
 	const labels: string[] = data.map((element: IContractData) => {
 		return element.property.address.state;
 	});
 	const uniqueLabels = labels.filter(function (item, pos) {
-		return labels.indexOf(item) == pos;
+		return labels.indexOf(item) === pos;
 	});
 	console.log(uniqueLabels);
 	return uniqueLabels;
@@ -76,12 +83,16 @@ async function getContractStates() {
 // []number
 // Gráfico: Aluguel total por estado
 async function getContractRentsPerState() {
-	const { data } = await api.get('/contracts');
+	const { data } = await api.get('/contracts', {
+		headers: {
+			authUser: getUser().id,
+		},
+	});
 	const labels: string[] = data.map((element: IContractData) => {
 		return element.property.address.state;
 	});
 	const uniqueLabels = labels.filter(function (item, pos) {
-		return labels.indexOf(item) == pos;
+		return labels.indexOf(item) === pos;
 	});
 	const rents: [] = data.map((element: IContractData) => {
 		return { rent: element.rent, state: element.property.address.state };
@@ -89,7 +100,7 @@ async function getContractRentsPerState() {
 	const rentsPerState: number[] = uniqueLabels.map(elementLabel => {
 		var rentTotal = 0;
 		rents.forEach(elementRent => {
-			if (elementRent['state'] == elementLabel) {
+			if (elementRent['state'] === elementLabel) {
 				rentTotal += elementRent['rent'];
 			}
 		});
@@ -103,7 +114,11 @@ async function getContractRentsPerState() {
 // []number
 // Gráfico: Pizza
 async function getRents3GreatestAndOthers() {
-	const { data } = await api.get('/contracts');
+	const { data } = await api.get('/contracts', {
+		headers: {
+			authUser: getUser().id,
+		},
+	});
 	const rents: number[] = data.map((element: IContractData) => {
 		return element.rent;
 	});
@@ -121,7 +136,11 @@ async function getRents3GreatestAndOthers() {
 // [{"rent": number, "zipCode": String}]
 // Gráfico: Aluguel por propriedade
 async function getRentsPerProperty() {
-	const { data } = await api.get('/contracts');
+	const { data } = await api.get('/contracts', {
+		headers: {
+			authUser: getUser().id,
+		},
+	});
 	const valuesAndLabels: [] = data.map((element: IContractData) => {
 		return { rent: element.rent, zipCode: element.property.address.zipCode };
 	});

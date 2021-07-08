@@ -3,8 +3,6 @@ import { AuthController } from './controllers/AuthController';
 import { UsersController } from './controllers/UsersController';
 import { ContractsController } from './controllers/ContractsController';
 
-import './database';
-
 const routes = Router();
 
 const usersController = new UsersController();
